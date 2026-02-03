@@ -132,7 +132,7 @@
             imgDisplay.src = currentStep.image;
             btnNo.textContent = currentStep.text;
             // Aumentar el tamaño del botón SÍ
-            yesFontSize += 1.5;
+            yesFontSize += 1.3;
             btnYes.style.fontSize = `${yesFontSize}rem`;
             btnYes.style.padding = `${yesFontSize * 0.5}rem ${yesFontSize * 1.5}rem`;
             noCount++;
