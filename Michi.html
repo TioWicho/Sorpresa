@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #fdf2f2;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 450px;
+            padding: 20px;
+        }
+
+        img {
+            width: 280px;
+            height: 300px; /* Altura fija para evitar saltos bruscos entre imágenes */
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #d32f2f;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: bold;
+        }
+
+        #btn-yes {
+            background-color: #4caf50;
+            color: white;
+            z-index: 999;
+        }
+
+        #btn-no {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .img-final {
+            width: 320px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-content" class="container">
+        <img id="image-display" src="https://i.pinimg.com/736x/a0/a3/8b/a0a38b0d54c2378ab959e1b06400acd0.jpg" alt="San Valentín">
+        
+        <h1 id="question">¿Quieres ser mi San Valentín?</h1>
+
+        <div class="buttons">
+            <button id="btn-yes">Sí</button>
+            <button id="btn-no">No</button>
+        </div>
+    </div>
+
+    <div id="success-content" class="container hidden">
+        <img class="img-final" src="https://i.pinimg.com/originals/17/3f/ef/173fefb6226c9c7c9af82c08c48a4442.gif" alt="Fuegos artificiales Corazón">
+        <h1>¡SÍIIIIII, TE AMOOOOO! 🎉❤️</h1>
+    </div>
+
+    <script>
+        const btnYes = document.getElementById('btn-yes');
+        const btnNo = document.getElementById('btn-no');
+        const mainContent = document.getElementById('main-content');
+        const successContent = document.getElementById('success-content');
+        const imgDisplay = document.getElementById('image-display');
+
+        let yesFontSize = 1.2;
+        let noCount = 0;
+
+        // Diccionario de frases e imágenes correspondientes
+        const contentSteps = [
+            {
+                text: "¿Estás segura?",
+                image: "https://i.pinimg.com/736x/1c/73/de/1c73de7fc5ce2dd94ab027de83bf634a.jpg"
+            },
+            {
+                text: "¿De verdad?",
+                image: "https://i.pinimg.com/736x/a3/5b/d7/a35bd72c588effdaa91c603a695f0821.jpg"
+            },
+            {
+                text: "¡Piénsalo otra vez!",
+                image: "https://i.pinimg.com/736x/17/51/75/175175673f2a2910278b3efa6c06e702.jpg"
+            },
+            {
+                text: "¡Última oportunidad!",
+                image: "https://i.pinimg.com/736x/84/63/5f/84635fa62368b80e30c207bd33b3d6c6.jpg"
+            },
+            {
+                text: "¿Segurísima?",
+                image: "https://i.pinimg.com/736x/4d/a8/e6/4da8e6c5acd6c839187ec1f1cdf68d43.jpg"
+            },
+            {
+                text: "¡Me vas a romper el corazón!",
+                image: "https://i.pinimg.com/originals/c9/2f/81/c92f81f7abb19ea489a37917e86843b9.gif"
+            },
+            {
+                text: "¡Di que sí, por favor, no seas mala!",
+                image: "https://i.pinimg.com/736x/93/13/8e/93138e0b18818147f9e351350fae2f08.jpg"
+            },
+            {
+                text: "¡Ya pueees, te lo ruego, por favoooor!",
+                image: "https://i.pinimg.com/736x/64/41/ee/6441eed7f939f28719cb98e24530c8fd.jpg"
+            }
+        ];
+
+        btnNo.addEventListener('click', () => {
+            // Seleccionamos el paso actual basado en el contador
+            const currentStep = contentSteps[noCount % contentSteps.length];
+
+            // Cambiar imagen y texto del botón No
+            imgDisplay.src = currentStep.image;
+            btnNo.textContent = currentStep.text;
+
+            // Aumentar el tamaño del botón SÍ
+            yesFontSize += 0.4;
+            btnYes.style.fontSize = `${yesFontSize}rem`;
+            btnYes.style.padding = `${yesFontSize * 0.5}rem ${yesFontSize * 1.5}rem`;
+
+            noCount++;
+        });
+
+        btnYes.addEventListener('click', () => {
+            mainContent.classList.add('hidden');
+            successContent.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
