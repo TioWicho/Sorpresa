@@ -17,12 +17,10 @@
             text-align: center;
             overflow: hidden;
         }
-
-        .container {
+         .container {
             max-width: 450px;
             padding: 20px;
         }
-
         img {
             width: 280px;
             height: 300px; /* Altura fija para evitar saltos bruscos entre imágenes */
@@ -31,13 +29,11 @@
             margin-bottom: 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-
         h1 {
             color: #d32f2f;
             font-size: 1.8rem;
             margin-bottom: 20px;
         }
-
         .buttons {
             display: flex;
             flex-wrap: wrap;
@@ -46,7 +42,6 @@
             gap: 15px;
             margin-top: 10px;
         }
-
         button {
             padding: 10px 25px;
             font-size: 1.2rem;
@@ -56,22 +51,18 @@
             transition: all 0.2s ease;
             font-weight: bold;
         }
-
         #btn-yes {
             background-color: #4caf50;
             color: white;
             z-index: 999;
         }
-
         #btn-no {
             background-color: #f44336;
             color: white;
         }
-
         .hidden {
             display: none;
         }
-
         .img-final {
             width: 320px;
             height: auto;
@@ -79,33 +70,26 @@
     </style>
 </head>
 <body>
-
     <div id="main-content" class="container">
         <img id="image-display" src="https://i.pinimg.com/736x/a0/a3/8b/a0a38b0d54c2378ab959e1b06400acd0.jpg" alt="San Valentín">
-        
         <h1 id="question">¿Quieres ser mi San Valentín?</h1>
-
         <div class="buttons">
             <button id="btn-yes">Sí</button>
             <button id="btn-no">No</button>
         </div>
     </div>
-
     <div id="success-content" class="container hidden">
         <img class="img-final" src="https://i.pinimg.com/originals/17/3f/ef/173fefb6226c9c7c9af82c08c48a4442.gif" alt="Fuegos artificiales Corazón">
         <h1>¡SÍIIIIII, TE AMOOOOO! 🎉❤️</h1>
     </div>
-
     <script>
         const btnYes = document.getElementById('btn-yes');
         const btnNo = document.getElementById('btn-no');
         const mainContent = document.getElementById('main-content');
         const successContent = document.getElementById('success-content');
         const imgDisplay = document.getElementById('image-display');
-
         let yesFontSize = 1.2;
         let noCount = 0;
-
         // Diccionario de frases e imágenes correspondientes
         const contentSteps = [
             {
@@ -141,23 +125,18 @@
                 image: "https://i.pinimg.com/736x/64/41/ee/6441eed7f939f28719cb98e24530c8fd.jpg"
             }
         ];
-
         btnNo.addEventListener('click', () => {
             // Seleccionamos el paso actual basado en el contador
             const currentStep = contentSteps[noCount % contentSteps.length];
-
             // Cambiar imagen y texto del botón No
             imgDisplay.src = currentStep.image;
             btnNo.textContent = currentStep.text;
-
             // Aumentar el tamaño del botón SÍ
-            yesFontSize += 0.4;
+            yesFontSize += 0.8;
             btnYes.style.fontSize = `${yesFontSize}rem`;
             btnYes.style.padding = `${yesFontSize * 0.5}rem ${yesFontSize * 1.5}rem`;
-
             noCount++;
         });
-
         btnYes.addEventListener('click', () => {
             mainContent.classList.add('hidden');
             successContent.classList.remove('hidden');
